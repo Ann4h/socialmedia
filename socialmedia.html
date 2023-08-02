@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tourist locations</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <style>
+        /* Replace the following style with your desired map size */
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scenic spots from instagram posts</h1>
+    <div id="map"></div>
+<div class="footer">
+    <p>&copy; ENC221-0102/2018</p>
+  </div>
+    <script>
+        // Replace the following coordinates with the center point of your map
+        const mapCenter = [-1.299068365609086, 36.82253662696379];
+
+        // Initialize the map
+        const map = L.map('map').setView(mapCenter, 5);
+
+        // Add the OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Sample data for major cancer centers
+        const instagram = [
+            {
+                account_name: 'travel.kenya',
+                link: 'https://www.instagram.com/p/CvUdeQdogmp/?igshid=MTc4MmM1YmI2Ng==',
+                post: 'Scenes at Lemek conservancy#travelgram #nairobi #maasai #maasaimara #nakuru #watamu #samburu #amboseli #mpashonews #citizen #fashion #paris #washington',
+                 lat: -1.104400893587348, 
+                lng: 35.40769102196263
+            },
+            {
+                account_name: 'wildliontourssafaris',
+                link: 'https://www.instagram.com/p/CTh-HozI0pj/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==/',
+                post: 'Join us on our tour to #shimbahills and #sheldrickwaterfalls on 26.09.2021 😊🐘🦒 #safariadventure #safari #safarikenya #tourskenya #fun #vacay #wildliontourssafaris',
+                lat: -4.284887409530866,
+                lng:  39.430827533965314
+            },
+            {
+                account_name: 'magical_kenya_tours_and_travel',
+                link: 'https://www.instagram.com/p/BUJBNislLlp/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+                post: '#pool and view at OL Malo house,Laikipia.',
+                lat: 0.6581550025640405, 
+                lng:  36.879767449267085
+            },
+			 {
+                account_name: 'akotheesafaris',
+                link: 'https://www.instagram.com/reel/CmJ3SreIxid/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+                post: 'Watamu raha usiachwe nyuma #SafariBlue Snorkeling and Swimming with fishes',
+                lat: -3.353823224112147, 
+                lng:  40.016468421603484
+            },
+			{
+                account_name: 'viutravels',
+                link: 'https://www.instagram.com/p/CvPkFAhgboM/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFl',
+                post: 'In The Spirit Of #viutravelpiggybank , Karibu 𝐒𝐎𝐀𝐌𝐄𝐒 𝐇𝐎𝐓𝐄𝐋, 𝐍𝐀𝐍𝐘𝐔𝐊𝐈',
+                lat: -0.04736522329092806,  
+                lng:  37.042399760904935
+            },
+			{
+                account_name: 'magical_kenya_tours_and_travel',
+                link: 'https://www.instagram.com/p/BUGdUtIF8kT/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+                post: '#Pool at dawn offbeat Meru',
+                lat: 0.2755316695134484, 
+                lng: 38.2042461137415
+            },
+			{
+                account_name: 'msaniiafricasafaris',
+                link: 'https://www.instagram.com/reel/Co7tE2LoceG/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+                post: 'Nairobi has been listed as one of the world’s greatest places to visit in 2022 with 📍: 𝑵𝒂𝒊𝒓𝒐𝒃𝒊 𝑵𝒂𝒕𝒊𝒐𝒏𝒂𝒍 𝑷𝒂𝒓𝒌 being the highlight. It’s the only park in the world situated within a city, being only about 10 kilometres away from Nairobi CBD, and is a key tourist attraction. We invite you to Explore #NairobiNationalPark and marvel at the magnificent wildlife against the backdrop of the city.',
+                lat: -1.382175891451874,
+                lng:  36.86102536441821
+            }
+            // Add more data for other major cancer centers
+        ];
+
+        // Add markers for each cancer center
+        instagram.forEach(center => {
+            const marker = L.marker([center.lat, center.lng]).addTo(map);
+            const popupContent = `
+                <b>${center.account_name}</b><br>
+                Link_: <a href="${center.link}" target="_blank">${center.link}</a><br>
+                Post_: ${center.post}`;
+            marker.bindPopup(popupContent);
+        });
+    </script>
+</body>
+</html>
